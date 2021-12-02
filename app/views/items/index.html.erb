@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<div class="px-4 pt-5 mb-5 text-center border-bottom">
+<div class="px-4 pt-2 mb-5 text-center border-bottom">
     <h1 class="display-4 fw-bold">Photos de chatons</h1>
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Le meilleur et le seul site d'achat de photos de chatons qui existe. Que cela soit pour vous ou pour offrir découvrez ici tout les meilleurs cliché de petits chats prit par des photographes professionels et imprimé par nos soins.</p>
@@ -13,19 +13,27 @@
   <body>
     <div class="row">
         <% @items.each do |item| %>
-        <div class="col-md-3">
+        <div class="col-sm-3">
           <div class="card" style="margin: 20px;">
           <div class="card-body">
-            <%= image_tag "cat-image-#{rand(1..4)}.jpg", size: "700x500", class: "img-fluid border rounded-3 shadow-lg mb-4" %>
+            <img src="<%= item.image_url %>" alt="random cat" width="700" height="500" class="img-fluid border rounded-3 shadow-lg mb-4">
             <a href="<%= item_path(item.id) %>" class="card-link"><h5 class="card-title"><%= item.title %></h5></a>
             <p class="card-text"><%=item.description%></p>
-            <% if user_signed_in? %>
+
+              <div class="row">
+              <div class="col">
+                <span class="btn btn-outline-secondary"><%= item.price %> €</span>
+              </div>
+              <div class="col">
+              <% if user_signed_in? %>
                 <%= form_for @join_table_item_cart do |f| %>
                     <%= f.hidden_field :item_id, value: item.id %>
                     <%= f.hidden_field :cart_id, value: current_user.cart.id %>
                     <button type="submit" class="btn btn-success">Ajouter au panier</button>
                 <% end %>
-            <% end %>
+              <% end %>
+              </div>
+            </div>
           </div>
           </div>
         </div>
@@ -33,3 +41,11 @@
     </div>
   </body>
 <br>
+<footer class="footer mt-auto py-3 text-center bg-light">
+        <div class="row">
+          <div class="col-lg-12">
+            <p>Made by <a href="https://github.com/T-PRAT">Titouan Prat</a>.</p>
+            <p>Based on <a href="https://getbootstrap.com/" rel="nofollow">Bootstrap</a> and <a href="https://bootswatch.com/minty/">bootswatch minty theme</a></p>
+          </div>
+        </div>
+ </footer>

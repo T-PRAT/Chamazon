@@ -19,30 +19,36 @@
                     <tbody>
                         <% total_price = [] %>
                         <%  @items_in_cart.each do |item| %>
-                            <tr>
+                        <tr>
                             <th scope="row"><%= item.quantity %></th>
                             <td><%= item.item.title %></td>
                             <td><%= item.item.price %>€</td>
                             <td><%= total_item = item.item.price*item.quantity.to_d %>€</td>
+                            <td>
+                                <div class="btn-group me-2" role="group" aria-label="First group">
+                                    <button type="button" class="btn btn-outline-warning">-</button>
+                                    <button type="button" class="btn btn-outline-warning">+</button>
+                                </div>
+                            </td>
                             <td><a href="<%= join_table_items_cart_path(item.id) %>" class="btn btn-danger" data-confirm="Êtes-vous sûr de vouloir supprimer ce-t-s article-s du panier ?" data-method="DELETE">Supprimer l'article</a></td>
                             <% total_price << total_item %>
-                            </tr>
+                        </tr>
                         <% end %>
                          <tr>
                             <th scope="row"></th>
                             <td></td>
-                            <td></td></td>
                             <td></td>
-                            </tr>
-                            <tr>
+                            <td></td>
+                        </tr>
+                        <tr class=" table-light">
                             <th scope="row"></th>
                             <td></td>
-                            <td class="font-weight-bold">Prix total:</td>
+                            <td class="bold">Prix total:</td>
                             <td><%= total_price.inject(0){|sum,x| sum + x }%>€</td>
-                            </tr>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-            <%=link_to 'Passer la commande', new_order_path, class: 'btn btn-outline-dark'%>
+        <%=link_to 'Passer la commande', new_order_path, class: 'btn btn-primary'%>
         </div>
 </div>

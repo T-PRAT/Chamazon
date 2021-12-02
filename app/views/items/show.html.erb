@@ -8,9 +8,12 @@
       <h2><%= @item.title %></h2>
       <p><%= @item.description %></p>
       <h3><%= @item.price %> €</h3>
-      <%= form_for @join_table_item_cart do |f| %>
-            <%= f.hidden_field :item_id, value: @item.id %>
-            <button type="submit" class="btn btn-success">Ajouter au panier</button>
+      <% if user_signed_in? %>
+          <%= form_for @join_table_item_cart do |f| %>
+              <%= f.hidden_field :item_id, value: @item.id %>
+              <%= f.hidden_field :cart_id, value: current_user.cart.id %>
+              <button type="submit" class="btn btn-success">Ajouter au panier</button>
+          <% end %>
       <% end %>
     </div>
   </div>
@@ -21,8 +24,6 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi omnis doloribus veritatis, reprehenderit rerum, amet eius perferendis iste numquam non quis doloremque magni, modi perspiciatis illum distinctio sequi quidem minus!</p>
     </div>
     <div class="col-md-6">
-      <%= link_to 'Edit', edit_item_path(@item), class: 'btn btn-outline-warning' %>
-      <%= link_to 'Supprimer', @item, method: :delete, data: { confirm: 'Confirmer la suppression' }, class: 'btn btn-outline-danger' %>
     </div>
   </div>
 </div>

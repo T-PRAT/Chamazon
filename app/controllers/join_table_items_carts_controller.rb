@@ -13,7 +13,6 @@ class JoinTableItemsCartsController < ApplicationController
     redirect_to cart_path
   end
 
-
   private
 
   def permit_link_params

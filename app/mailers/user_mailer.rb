@@ -1,8 +1,8 @@
 class UserMailer < ApplicationMailer
 	default from: "Chaton@chamazon.fr"
 
-	def welcome_email()
-     mail(to: "Titouan.p@hotmail.fr",
-          subject: "This is a nice welcome email")
-   end
+     def order
+          @cart = Cart.find(params[:id])
+          mail(to: "", subject: "Votre commande est là !")
+     end
 end

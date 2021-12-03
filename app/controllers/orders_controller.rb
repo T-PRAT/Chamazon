@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
       flash[:error] = e.message
       redirect_to new_order_path
     end
+    #UserMailer.order
     # After the rescue, if the payment succeeded
   end
 end

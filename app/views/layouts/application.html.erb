@@ -51,7 +51,9 @@
                 </li>
                     <span class="badge"><%= total_items.inject(0){|sum,x| sum + x }%></span>
                 <% else %>
-                    <li class="nav-item"><%= link_to 'Mon panier 0', cart_path(current_user.cart.id), class: "nav-link" %></li>
+                  <%= link_to cart_path(current_user.cart.id) do %>
+                    <%= image_tag "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fpreview%2Fwhite%2Fcart-xxl.png&f=1&nofb=1", size: "30x30" %>
+                  <% end %>
                 <% end %>
               </ul>
               <%end%>
